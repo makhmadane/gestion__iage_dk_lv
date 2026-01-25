@@ -44,4 +44,8 @@ Route::get('/iage', function () {
 
 //Protocole http
 
-Route::get("/assurance",[\App\Http\Controllers\AssuranceController::class,'index']);
+Route::get("/assurance",[\App\Http\Controllers\AssuranceController::class,'index'])->name('assurance');
+Route::get('/addAssurance',[\App\Http\Controllers\AssuranceController::class,'create'])->name('addAssurance');
+Route::post('/storeAssurance',[\App\Http\Controllers\AssuranceController::class,'store'])->name('storeAssurance');
+
+Route::get("/type-assurance",[\App\Http\Controllers\TypeAssuranceController::class,'index'])->name('type-assurance');
