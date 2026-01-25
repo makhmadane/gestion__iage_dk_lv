@@ -42,5 +42,6 @@ Route::get('/iage', function () {
 
 });
 
+//Protocole http
 
 Route::get("/assurance",[\App\Http\Controllers\AssuranceController::class,'index']);

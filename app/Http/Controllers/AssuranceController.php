@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class AssuranceController extends Controller
 {
-    function index(){
+    function index(){  //liste des assurances
 
        $assurances =  Assurance::all();  //Model
 
