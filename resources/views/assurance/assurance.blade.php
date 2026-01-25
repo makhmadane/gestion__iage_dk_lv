@@ -20,12 +20,18 @@
                 <td>{{$a->montant}}</td>
                 <td>{{$a->bonus}}</td>
                 <td>
-                    <button class="btn btn-danger">Supprimer </button>
-                    <button class="btn btn-primary">Modifier  </button>
+                    <form action="{{route('deleteAssurance',[$a->id])}}" method="post">
+                        @csrf
+                        @method("delete")
+                        <button class="btn btn-danger" type="submit">Supprimer </button>
+                    </form>
+
+                    <a class="btn btn-primary" href="{{route('editAssurance',[$a->id])}}">Modifier  </a>
                 </td>
             </tr>
 
         @endforeach
     </table>
+    {{$assurs->links()}}
     @endsection
 

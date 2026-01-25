@@ -47,5 +47,10 @@ Route::get('/iage', function () {
 Route::get("/assurance",[\App\Http\Controllers\AssuranceController::class,'index'])->name('assurance');
 Route::get('/addAssurance',[\App\Http\Controllers\AssuranceController::class,'create'])->name('addAssurance');
 Route::post('/storeAssurance',[\App\Http\Controllers\AssuranceController::class,'store'])->name('storeAssurance');
+Route::delete('deleteAssurance/{id}',[\App\Http\Controllers\AssuranceController::class,'destroy'])->name('deleteAssurance');
+Route::get('/editAssurance/{id}',[\App\Http\Controllers\AssuranceController::class,'edit'])->name('editAssurance');
+Route::put('/updateAssurance',[\App\Http\Controllers\AssuranceController::class,'update'])->name('updateAssurance');
 
 Route::get("/type-assurance",[\App\Http\Controllers\TypeAssuranceController::class,'index'])->name('type-assurance');
+
+//Route::resource('type-assurance',\App\Http\Controllers\TypeAssuranceController::class);

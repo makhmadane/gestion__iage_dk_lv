@@ -14,7 +14,7 @@ class AssuranceController extends Controller
      */
     public function index()
     {
-        $assurances =  Assurance::all();  //Model
+        $assurances =  Assurance::orderBy('id','desc')->paginate(5) ;//Model
         return view('assurance.assurance',['assurs'=>$assurances]); //view
 
     }
@@ -26,7 +26,8 @@ class AssuranceController extends Controller
      */
     public function create()
     {
-        return view('assurance.add');
+        $assurance = new Assurance();
+        return view('assurance.add',['assurance'=>$assurance]);
     }
 
     /**
@@ -54,7 +55,7 @@ class AssuranceController extends Controller
      */
     public function show($id)
     {
-        //
+        return Assurance::find($id);
     }
 
     /**
@@ -65,7 +66,8 @@ class AssuranceController extends Controller
      */
     public function edit($id)
     {
-        //
+        $assurance = $this->show($id);
+        return view('assurance.add',['assurance'=>$assurance]);
     }
 
     /**
@@ -75,9 +77,14 @@ class AssuranceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $assurance = $this->show($request['id']);
+        $assurance->libelle = $request['libelle'];
+        $assurance->montant = $request['montant'];
+        $assurance->bonus = $request['bonus'];
+        $assurance->save();
+        return redirect('/assurance');
     }
 
     /**
@@ -88,6 +95,8 @@ class AssuranceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $assurance = $this->show($id);
+        $assurance->delete();
+        return redirect('/assurance');
     }
 }
