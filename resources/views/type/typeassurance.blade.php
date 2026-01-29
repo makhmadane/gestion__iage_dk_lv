@@ -2,7 +2,7 @@
 @extends('template')
 
 @section('content')
-    <button class="btn btn-success">Ajouter</button>
+    <a class="btn btn-success" href="{{route('type-assurance.create')}}" >Ajouter</a>
 <table class="table table-striped mt-5">
     <tr>
         <td>Id</td>

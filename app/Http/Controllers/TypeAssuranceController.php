@@ -26,7 +26,7 @@ class TypeAssuranceController extends Controller
      */
     public function create()
     {
-        //
+        return view('type.add');
     }
 
     /**
@@ -37,7 +37,15 @@ class TypeAssuranceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'libelle'=>'required'
+        ]);
+
+        $type = new TypeAssurance();
+        $type->libelle = $request['libelle'];
+        $type->save();
+        return redirect('/type-assurance');
+
     }
 
     /**

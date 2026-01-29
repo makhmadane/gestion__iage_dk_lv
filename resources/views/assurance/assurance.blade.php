@@ -9,6 +9,7 @@
             <td>Libelle</td>
             <td>Montant</td>
             <td>Bonus</td>
+            <td>Type Assurance</td>
             <td>Action(s)</td>
 
         </tr>
@@ -19,6 +20,7 @@
                 <td>{{$a->libelle}}</td>
                 <td>{{$a->montant}}</td>
                 <td>{{$a->bonus}}</td>
+                <td>{{$a->typeIage->libelle}}</td>
                 <td>
                     <form action="{{route('deleteAssurance',[$a->id])}}" method="post">
                         @csrf

@@ -44,6 +44,10 @@ Route::get('/iage', function () {
 
 //Protocole http
 
+Route::get('/', function () {
+    return redirect('/assurance');
+});
+
 Route::get("/assurance",[\App\Http\Controllers\AssuranceController::class,'index'])->name('assurance');
 Route::get('/addAssurance',[\App\Http\Controllers\AssuranceController::class,'create'])->name('addAssurance');
 Route::post('/storeAssurance',[\App\Http\Controllers\AssuranceController::class,'store'])->name('storeAssurance');
@@ -51,6 +55,6 @@ Route::delete('deleteAssurance/{id}',[\App\Http\Controllers\AssuranceController:
 Route::get('/editAssurance/{id}',[\App\Http\Controllers\AssuranceController::class,'edit'])->name('editAssurance');
 Route::put('/updateAssurance',[\App\Http\Controllers\AssuranceController::class,'update'])->name('updateAssurance');
 
-Route::get("/type-assurance",[\App\Http\Controllers\TypeAssuranceController::class,'index'])->name('type-assurance');
+//Route::get("/type-assurance",[\App\Http\Controllers\TypeAssuranceController::class,'index'])->name('type-assurance');
 
-//Route::resource('type-assurance',\App\Http\Controllers\TypeAssuranceController::class);
+Route::resource('type-assurance',\App\Http\Controllers\TypeAssuranceController::class);

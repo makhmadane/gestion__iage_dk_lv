@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Assurance;
+use App\Models\TypeAssurance;
 use Illuminate\Http\Request;
 
 class AssuranceController extends Controller
@@ -27,7 +28,8 @@ class AssuranceController extends Controller
     public function create()
     {
         $assurance = new Assurance();
-        return view('assurance.add',['assurance'=>$assurance]);
+        $types_assurances = TypeAssurance::all(); //model
+        return view('assurance.add',['assurance'=>$assurance, 'types_assurances'=>$types_assurances]);
     }
 
     /**
@@ -42,6 +44,7 @@ class AssuranceController extends Controller
         $assurance->libelle = $request['libelle'];
         $assurance->montant  = $request['montant'];
         $assurance->bonus = $request['bonus'];
+        $assurance->type_assurance_id = $request['type'];
         $assurance->save(); //model
       return redirect('/assurance');
 

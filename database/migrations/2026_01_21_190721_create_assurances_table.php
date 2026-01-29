@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string("libelle");
             $table->integer("montant");
             $table->integer("bonus");
+
             $table->timestamps();
         });
     }
