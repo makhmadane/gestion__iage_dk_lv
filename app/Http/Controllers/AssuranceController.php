@@ -40,6 +40,14 @@ class AssuranceController extends Controller
      */
     public function store(Request $request)
     {
+
+
+        $request->validate([
+            'libelle'=>'required|max:50',
+            'montant'=>'required',
+            'type'=>'required',
+        ]);
+
         $assurance = new Assurance();
         $assurance->libelle = $request['libelle'];
         $assurance->montant  = $request['montant'];
@@ -69,8 +77,9 @@ class AssuranceController extends Controller
      */
     public function edit($id)
     {
+        $types_assurances = TypeAssurance::all(); //model
         $assurance = $this->show($id);
-        return view('assurance.add',['assurance'=>$assurance]);
+        return view('assurance.add',['assurance'=>$assurance, 'types_assurances'=>$types_assurances]);
     }
 
     /**
@@ -82,6 +91,12 @@ class AssuranceController extends Controller
      */
     public function update(Request $request)
     {
+        $request->validate([
+            'libelle'=>'required|max:50',
+            'montant'=>'required',
+            'type'=>'required',
+        ]);
+
         $assurance = $this->show($request['id']);
         $assurance->libelle = $request['libelle'];
         $assurance->montant = $request['montant'];

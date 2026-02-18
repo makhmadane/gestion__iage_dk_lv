@@ -37,12 +37,21 @@ class TypeAssuranceController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
-            'libelle'=>'required'
+            'libelle'=>'required|max:50',
+            'image' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048'
         ]);
+
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('images', 'public');
+        }
+
 
         $type = new TypeAssurance();
         $type->libelle = $request['libelle'];
+        $type->image = $imagePath;
         $type->save();
         return redirect('/type-assurance');
 
