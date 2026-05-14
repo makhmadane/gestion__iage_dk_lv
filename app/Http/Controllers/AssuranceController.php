@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AssuranceRequest;
 use App\Models\Assurance;
 use App\Models\TypeAssurance;
 use Illuminate\Http\Request;
@@ -38,22 +39,18 @@ class AssuranceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AssuranceRequest $request)
     {
+        $validated = $request->validated();
+        $validated['bonus'] = $request['bonus'];
+        Assurance::create($validated);
 
-
-        $request->validate([
-            'libelle'=>'required|max:50',
-            'montant'=>'required',
-            'type'=>'required',
-        ]);
-
-        $assurance = new Assurance();
+      /*  $assurance = new Assurance();
         $assurance->libelle = $request['libelle'];
         $assurance->montant  = $request['montant'];
         $assurance->bonus = $request['bonus'];
         $assurance->type_assurance_id = $request['type'];
-        $assurance->save(); //model
+        $assurance->save(); //model*/
       return redirect('/assurance');
 
     }
@@ -89,19 +86,18 @@ class AssuranceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(AssuranceRequest $request)
     {
-        $request->validate([
-            'libelle'=>'required|max:50',
-            'montant'=>'required',
-            'type'=>'required',
-        ]);
-
         $assurance = $this->show($request['id']);
+        $validated = $request->validated();
+        $validated['bonus'] = $request['bonus'];
+        $assurance->update($validated);
+
+       /*
         $assurance->libelle = $request['libelle'];
         $assurance->montant = $request['montant'];
         $assurance->bonus = $request['bonus'];
-        $assurance->save();
+        $assurance->save();*/
         return redirect('/assurance');
     }
 

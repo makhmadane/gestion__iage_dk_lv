@@ -9,6 +9,8 @@ class Assurance extends Model
 {
     use HasFactory;
 
+    //protected $fillable=['libelle','montant', ''];
+    protected $guarded=[];
     public function typeIage()
     {
         return $this->belongsTo(TypeAssurance::class, 'type_assurance_id');

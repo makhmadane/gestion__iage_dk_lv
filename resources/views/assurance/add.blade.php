@@ -18,7 +18,7 @@
     <label>Bonus</label>
     <input name="bonus" class="form-control" value="{{$assurance->id ? $assurance->bonus : old('bonus') }}">
     <label>Type Assurance</label>
-    <select class="form-control @error('type_assurance_id')is-invalid @enderror" name="type"  >
+    <select class="form-control @error('type_assurance_id')is-invalid @enderror" name="type_assurance_id"  >
         @foreach($types_assurances as $t)
             <option value="{{$t->id}}"   @if($assurance->type_assurance_id == $t->id)  selected @endif  >{{$t->libelle}}</option>
         @endforeach

@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Assurance;
+use App\Models\TypeAssurance;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,6 +16,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        TypeAssurance::factory(5)->create();
+        Assurance::factory(10)->create();
+
+        $this->call(
+            TypeSeeder::class,
+        );
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
